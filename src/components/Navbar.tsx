@@ -6,14 +6,19 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.nav
-      className="bg-gray-800/50 backdrop-blur-xs shadow-lg fixed top-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-lg rounded-full z-20"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <>
+      <motion.nav
+        className="
+          fixed top-8 inset-x-0 mx-auto
+          w-[90%] max-w-lg px-4
+          bg-gray-800/50 backdrop-blur-xs shadow-lg
+          rounded-full z-20 overflow-x-hidden border border-gray-700
+        "
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="flex justify-between items-center h-13">
           {/* Logo */}
           <motion.div
             className="flex-shrink-0"
@@ -79,15 +84,25 @@ const Navbar: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown (hors du <nav>) */}
       {isOpen && (
         <motion.div
-          className="md:hidden bg-gray-800/70 backdrop-blur-md shadow-lg rounded-lg mt-2"
-          initial={{ opacity: 0, y: -20 }}
+          className="
+            fixed
+            top-[4rem]            /* juste sous la navbar */
+            inset-x-0 mx-auto
+            w-[90%] max-w-lg
+            md:hidden
+            bg-gray-800/70 backdrop-blur-md
+            shadow-lg rounded-lg
+            overflow-hidden
+            z-20
+          "
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           {["About", "Projects", "Skills", "Contact"].map((item) => (
             <a
@@ -100,7 +115,7 @@ const Navbar: React.FC = () => {
           ))}
         </motion.div>
       )}
-    </motion.nav>
+    </>
   );
 };
 

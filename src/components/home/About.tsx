@@ -18,6 +18,7 @@ import {
 import { BiLogoVisualStudio } from "react-icons/bi";
 import { RiNextjsFill } from "react-icons/ri";
 import { HiOutlineMail } from "react-icons/hi";
+import { BsTwitterX } from "react-icons/bs";
 
 const container = {
   hidden: { },
@@ -30,23 +31,74 @@ const item = {
   show:  { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
 };
 
+const socialContainer = {
+  hidden: { opacity: 0 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
+const socialItem = {
+  hidden: { opacity: 0, y: 10 },
+  show:   { opacity: 1, y: 0, transition: { type: "spring", stiffness: 200 } }
+};
+
 const socialLinks = [
-  { icon: FaInstagram,   url: "https://instagram.com/sofi_moumni",   label: "@sofi_moumni" },
-  { icon: FaTwitter,     url: "https://twitter.com/sofi_moumni",     label: "@sofi_moumni" },
-  { icon: FaLinkedin,    url: "https://linkedin.com/in/sofi_moumni", label: "@sofi_moumni" },
-  { icon: SiIndeed,      url: "https://indeed.com/profile/sofi_moumni", label: "@sofi_moumni" },
-  { icon: SiTelegram,    url: "https://t.me/sofi_moumni",           label: "@sofi_moumni" },
-  { icon: HiOutlineMail, url: "mailto:contact@moumni.dev",          label: "contact@moumni.dev" },
+  { icon: FaInstagram,   url: "https://instagram.com/sofi_moumni",   label: "Instagram" },
+  { icon: BsTwitterX,     url: "https://x.com/moumnidev",     label: "Twitter" },
+  { icon: FaLinkedin,    url: "https://linkedin.com/in/sofi_moumni", label: "LinkedIn" },
+  { icon: SiIndeed,      url: "https://indeed.com/profile/sofi_moumni", label: "Indeed" },
+  { icon: SiTelegram,    url: "https://t.me/sofi_moumni",           label: "Telegram" },
+  { icon: HiOutlineMail, url: "mailto:contact@moumni.dev",          label: "Email" },
 ];
 
+export const AboutSocials: React.FC = () => (
+  <motion.div
+    className="mt-6 flex justify-center md:justify-start space-x-4"
+    initial="hidden"
+    animate="show"
+    variants={socialContainer}
+  >
+    {socialLinks.map(({ icon: Icon, url, label }, i) => (
+      <motion.a
+        key={label}
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={label}
+        className="group"
+        variants={socialItem}
+        whileHover={{ scale: 1.15 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <div className="
+          flex items-center justify-center
+          w-10 h-10 sm:w-12 sm:h-12
+          bg-gray-700/50
+          group-hover:bg-gradient-to-tr group-hover:from-purple-500 group-hover:to-pink-500
+          rounded-full
+          transition-colors duration-300
+        ">
+          <Icon className="text-white text-lg sm:text-xl" />
+        </div>
+      </motion.a>
+    ))}
+  </motion.div>
+);
+
 const About: React.FC = () => {
+  const words = [
+    "Full‑Stack Developer",
+    "Creative Problem‑Solver",
+    "Passionate Learner"
+  ];
   const [text] = useTypewriter({
-    words: ["Full‑Stack Developer", "Creative Problem‑Solver", "Passionate Learner"],
+    words,
     loop: true,
     typeSpeed: 80,
     deleteSpeed: 50,
     delaySpeed: 1200
   });
+
+  // on détermine la chaîne la plus longue pour réserver l’espace
+  const longest = words.reduce((a, b) => (a.length > b.length ? a : b), "");
 
   const techCategories = [
     {
@@ -139,7 +191,7 @@ const About: React.FC = () => {
         <div className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] bg-yellow-300 opacity-10 blur-3xl rounded-full"></div>
       </div>
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <motion.h2
           className="text-5xl font-extrabold text-white text-center mb-4"
@@ -151,27 +203,27 @@ const About: React.FC = () => {
           <div className="mt-2 h-1 w-24 mx-auto bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 animate-pulse rounded-full" />
         </motion.h2>
 
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
           {/* Image + Name + Social */}
           <motion.div
-            className="md:w-1/3 flex flex-col items-center"
+            className="w-full sm:w-2/3 md:w-1/3 flex flex-col items-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={800} glareEnable glareMaxOpacity={0.2}>
+            <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={800}>
               <div className="relative rounded-full p-1 bg-gradient-to-tr from-purple-600 to-blue-400 shadow-lg">
                 <img
                   src="/favicon.ico"
                   alt="Votre Profil"
-                  className="rounded-full w-48 h-48 md:w-56 md:h-56 object-cover"
+                  className="rounded-full w-32 h-32 sm:w-48 sm:h-48 md:w-56 md:h-56 object-cover"
                 />
               </div>
             </Tilt>
 
             {/* ► Ton nom en gros animé sous le logo */}
             <motion.h1
-              className="text-5xl md:text-6xl font-extrabold text-white mt-6"
+              className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -180,35 +232,29 @@ const About: React.FC = () => {
             </motion.h1>
 
             {/* ► Social Links sous le nom */}
-            <div className="mt-4 flex flex-wrap justify-center gap-4">
-              {socialLinks.map(({ icon: Icon, url, label }, i) => (
-                <a
-                  key={i}
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-white hover:text-pink-400 transition"
-                >
-                  <Icon className="text-2xl" />
-                  <span className="ml-2 text-sm">{label}</span>
-                </a>
-              ))}
-            </div>
+            <AboutSocials />
           </motion.div>
 
           {/* Texte & CTA */}
           <motion.div
-            className="md:w-2/3 text-center md:text-left"
+            className="w-full md:w-2/3 text-center md:text-left"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-xl shadow-xl">
+            <div className="bg-gray-800/50 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-xl">
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
-                Hello! I'm{" "}
-                <span className="font-bold text-white">
-                  {text}
-                  <Cursor cursorStyle="|" />
+                Hello! I'm{' '}
+                <span className="relative inline-block">
+                  {/* placeholder invisible pour réserver la place */}
+                  <span className="invisible font-bold whitespace-nowrap">
+                    {longest}
+                  </span>
+                  {/* texte animé, absolument positionné */}
+                  <span className="absolute inset-0 font-bold text-white whitespace-nowrap overflow-visible">
+                    {text}
+                    <Cursor cursorStyle="|" />
+                  </span>
                 </span>
                 , crafting modern, scalable web experiences with flair.
               </p>
@@ -220,10 +266,10 @@ const About: React.FC = () => {
               </p>
 
               {/* Call to Action Buttons */}
-              <div className="flex justify-center md:justify-start mb-8">
+              <div className="flex justify-center md:justify-start mb-6">
                 <motion.a
                   href="#contact"
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold rounded-full shadow-lg transform transition-transform duration-300 hover:scale-105"
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -235,43 +281,51 @@ const About: React.FC = () => {
 
               {/* Tech Stack */}
               <motion.div
-                className="space-y-10 mt-8"
+                className="space-y-8"
                 variants={container}
                 initial="hidden"
                 animate="show"
               >
                 {techCategories.map(({ title, items }) => (
                   <motion.div key={title} variants={item}>
-                    <h3 className="text-xl font-semibold text-white mb-4 relative inline-block">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-3 inline-block relative">
                       {title}
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded animate-pulse" />
+                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 rounded animate-pulse" />
                     </h3>
-                    <div className="flex flex-wrap gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                       {items.map(({ icon: Icon, name }, i) => (
-                        <Tilt
+                        <div
                           key={i}
-                          tiltMaxAngleX={15}
-                          tiltMaxAngleY={15}
-                          perspective={1000}
-                          className="w-16 h-16"
+                          className="
+                            group
+                            aspect-square                /* force la carte à un carré */
+                            bg-gradient-to-tr from-indigo-500 to-pink-500
+                            rounded-2xl shadow-lg
+                            cursor-pointer
+                            overflow-visible             /* pour laisser le texte apparaître */
+                          "
                         >
-                          <motion.div
-                            className="group relative w-full h-full bg-gradient-to-tr from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden cursor-pointer"
-                            whileHover={{ scale: 1.2 }}
-                            transition={{ type: "spring", stiffness: 200 }}
-                          >
+                          <div className="flex flex-col items-center justify-between h-full p-4">
+                            {/* Icon plus petit */}
                             <motion.div
-                              className="absolute inset-0 bg-white opacity-10"
-                              initial={{ rotate: 0 }}
-                              whileHover={{ rotate: 360 }}
-                              transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-                            />
-                            <Icon className="relative text-white text-2xl z-10" />
-                            <span className="absolute bottom-1 w-full text-center text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                              className="text-white text-4xl sm:text-5xl"
+                              whileHover={{ scale: 0.85, y: -10 }}
+                              transition={{ type: 'spring', stiffness: 200 }}
+                            >
+                              <Icon />
+                            </motion.div>
+                            {/* Texte toujours visible sur mobile, au hover sur desktop */}
+                            <span
+                              className="
+                                mt-2 text-xs sm:text-sm text-white
+                                opacity-100 sm:opacity-0 sm:group-hover:opacity-100
+                                transition-opacity duration-200
+                              "
+                            >
                               {name}
                             </span>
-                          </motion.div>
-                        </Tilt>
+                          </div>
+                        </div>
                       ))}
                     </div>
                   </motion.div>

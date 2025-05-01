@@ -53,14 +53,15 @@ const Projects: React.FC = () => (
       </div>
 
       <div className="relative container mx-auto px-4">
-        <motion.h2
-          className="text-4xl font-extrabold text-white text-center mb-12"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          My Projects
-        </motion.h2>
+            <motion.h2
+              className="text-3xl sm:text-5xl font-extrabold text-white text-center mb-12"
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              My Projects
+              <span className="block mt-2 h-1 w-24 mx-auto bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 rounded-full animate-pulse"/>
+            </motion.h2>
 
         {/* grille animée */}
         <motion.div
