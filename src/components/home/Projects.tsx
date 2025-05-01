@@ -73,7 +73,7 @@ const Projects: React.FC = () => (
             show: { transition: { staggerChildren: 0.1 } }
           }}
         >
-          {projects.map((proj, idx) => (
+          {projects.map((proj) => (
             <Tilt
               key={proj.id}
               tiltMaxAngleX={10}

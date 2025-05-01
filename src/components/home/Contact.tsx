@@ -19,22 +19,26 @@ const Contact: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = async (e: FormEvent) => {
+const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setStatus({ loading: true, success: false, error: null })
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      })
-      if (!res.ok) throw new Error(`Error ${res.status}`)
-      setStatus({ loading: false, success: true, error: null })
-      setForm({ name: "", email: "", message: "" })
-    } catch (err: any) {
-      setStatus({ loading: false, success: false, error: err.message || "Failed to send" })
+        const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(form)
+        })
+        if (!res.ok) throw new Error(`Error ${res.status}`)
+        setStatus({ loading: false, success: true, error: null })
+        setForm({ name: "", email: "", message: "" })
+    } catch (err) {
+        if (err instanceof Error) {
+            setStatus({ loading: false, success: false, error: err.message })
+        } else {
+            setStatus({ loading: false, success: false, error: "Failed to send" })
+        }
     }
-  }
+}
 
   return (
     <section id="contact" className="relative bg-gray-900 overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
@@ -56,9 +60,9 @@ const Contact: React.FC = () => {
       >
         {/* Contact info */}
         <motion.div variants={item} className="space-y-6">
-          <h3 className="text-2xl font-bold text-white">Let's build something together</h3>
+          <h3 className="text-2xl font-bold text-white">Let&rsquo;s build something together</h3>
           <p className="text-gray-300">
-            I'm available for freelance projects or full‑time roles. Reach out and let's chat!
+            I&rsquo;m available for freelance projects or full‑time roles. Reach out and let&rsquo;s chat!
           </p>
           <ul className="space-y-4">
             <li className="flex items-center text-gray-200">
@@ -88,7 +92,7 @@ const Contact: React.FC = () => {
                 name={field}
                 id={field}
                 required
-                value={(form as any)[field]}
+                value={form[field as keyof typeof form]}
                 onChange={handleChange}
                 placeholder=" "
                 className="

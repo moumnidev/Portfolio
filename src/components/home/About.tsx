@@ -6,7 +6,7 @@ import Tilt from "react-parallax-tilt";
 import {
   FaReact, FaNodeJs, FaJava,
   FaHtml5, FaCss3Alt, FaDocker, FaPython,
-  FaInstagram, FaTwitter, FaLinkedin
+  FaInstagram, FaLinkedin
 } from "react-icons/fa";
 import {
   SiTypescript, SiMysql, SiMongodb, SiExpress, SiTailwindcss,
@@ -56,7 +56,7 @@ export const AboutSocials: React.FC = () => (
     animate="show"
     variants={socialContainer}
   >
-    {socialLinks.map(({ icon: Icon, url, label }, i) => (
+    {socialLinks.map(({ icon: Icon, url, label }) => (
       <motion.a
         key={label}
         href={url}
@@ -244,7 +244,7 @@ const About: React.FC = () => {
           >
             <div className="bg-gray-800/50 backdrop-blur-sm p-6 sm:p-8 rounded-xl shadow-xl">
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
-                Hello! I'm{' '}
+                Hello! I&rsquo;m{' '}
                 <span className="relative inline-block">
                   {/* placeholder invisible pour réserver la place */}
                   <span className="invisible font-bold whitespace-nowrap">
@@ -261,7 +261,7 @@ const About: React.FC = () => {
               <p className="text-gray-300 leading-relaxed mb-6">
                 My passion lies in solving complex problems, learning new
                 technologies, and building projects that make an impact.
-                Outside of code, you'll find me exploring software
+                Outside of code, you&rsquo;ll find me exploring software
                 architecture or enjoying a good cup of coffee.
               </p>
 
