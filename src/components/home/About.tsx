@@ -96,7 +96,7 @@ const About: React.FC = () => {
     delaySpeed: 1200
   });
 
-  // on détermine la chaîne la plus longue pour réserver l’espace
+// Determine the longest string to reserve space
   const longest = words.reduce((a, b) => (a.length > b.length ? a : b), "");
 
   const techCategories = [
@@ -182,7 +182,6 @@ const About: React.FC = () => {
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-purple-500 opacity-20 blur-3xl rounded-full"></div>
-        {/* Ajout de lumières supplémentaires */}
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-green-400 opacity-20 blur-3xl rounded-full"></div>
         <div className="absolute top-1/3 right-1/4 w-[250px] h-[250px] bg-pink-500 opacity-15 blur-3xl rounded-full"></div>
         <div className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] bg-yellow-300 opacity-10 blur-3xl rounded-full"></div>
@@ -218,7 +217,7 @@ const About: React.FC = () => {
               </div>
             </Tilt>
 
-            {/* ► Ton nom en gros animé sous le logo */}
+            {/* Animated name below the logo */}
             <motion.h1
               className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-white"
               initial={{ opacity: 0, y: 20 }}
@@ -228,11 +227,11 @@ const About: React.FC = () => {
               Sofiane Moumni
             </motion.h1>
 
-            {/* ► Social Links sous le nom */}
+            {/* Social Links below the name */}
             <AboutSocials />
           </motion.div>
 
-          {/* Texte & CTA */}
+          {/* Text & Call to Action */}
           <motion.div
             className="w-full md:w-2/3 text-center md:text-left"
             initial={{ opacity: 0, x: 50 }}
@@ -243,11 +242,11 @@ const About: React.FC = () => {
               <p className="text-gray-300 leading-relaxed mb-4 text-lg">
                 Hello! I&rsquo;m{' '}
                 <span className="relative inline-block">
-                  {/* placeholder invisible pour réserver la place */}
+                  {/* Invisible placeholder to reserve space */}
                   <span className="invisible font-bold whitespace-nowrap">
                     {longest}
                   </span>
-                  {/* texte animé, absolument positionné */}
+                  {/* Animated text, absolutely positioned */}
                   <span className="absolute inset-0 font-bold text-white whitespace-nowrap overflow-visible">
                     {text}
                     <Cursor cursorStyle="|" />
@@ -303,7 +302,7 @@ const About: React.FC = () => {
                           "
                         >
                           <div className="flex flex-col items-center justify-between h-full p-4">
-                            {/* Icon plus petit */}
+                            {/* Smaller icon */}
                             <motion.div
                               className="text-white text-4xl sm:text-5xl"
                               whileHover={{ scale: 0.85, y: -10 }}
@@ -311,7 +310,7 @@ const About: React.FC = () => {
                             >
                               <Icon />
                             </motion.div>
-                            {/* Texte toujours visible sur mobile, au hover sur desktop */}
+                            {/* Text always visible on mobile, visible on hover on desktop */}
                             <span
                               className="
                                 mt-2 text-xs sm:text-sm text-white
