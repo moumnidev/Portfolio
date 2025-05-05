@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MoumniDev – Full-Stack Developer Portfolio
+
+A personal portfolio website showcasing projects, skills, and contact form built with Next.js, React, Tailwind CSS and Framer Motion.  
+Live demo: https://moumni.dev
+
+---
+
+## Table of Contents
+
+1. [Features](#features)  
+2. [Tech Stack](#tech-stack)  
+3. [Project Structure](#project-structure)  
+4. [Getting Started](#getting-started)  
+5. [Environment Variables](#environment-variables)  
+6. [Available Scripts](#available-scripts)  
+7. [Deployment](#deployment)  
+8. [SEO & Accessibility](#seo--accessibility)  
+9. [License](#license)  
+10. [Contact](#contact)  
+
+---
+
+## Features
+
+- ✨ **Hero / About Me** section with smooth scroll  
+- 🚀 **My Projects** section (in-progress placeholder)  
+- 🛠 **Tech Stack** showcase  
+- 💬 **Contact Form** with rate-limiting & serverless email API  
+- 🎨 Responsive design with Tailwind CSS and mobile menu  
+- 🔄 Animations with Framer Motion  
+- 🔍 SEO optimized: JSON-LD, `sitemap.xml`, `robots.txt`  
+- 🌐 Multi-language support (fr-FR / en-US anchors)  
+
+---
+
+## Tech Stack
+
+- Next.js 15 (App Router, Server Components)  
+- React 19 + Client Components  
+- TypeScript  
+- Tailwind CSS (JIT)  
+- Framer Motion  
+- React Icons  
+- NodeMailer (API route)  
+
+---
+
+## Project Structure
+
+```
+/public
+    ├─logo.png
+    ├─ favicon.ico
+    ├─ sitemap.xml
+    └─ robots.txt
+/src
+    ├───app
+    │   │   favicon.ico
+    │   │   globals.css
+    │   │   layout.tsx
+    │   │   not-found.tsx
+    │   │   page.tsx
+    │   │
+    │   └───api
+    │       └───contact
+    │               route.ts
+    │
+    ├───components
+    │   │   Navbar.tsx
+    │   │
+    │   └───home
+    │           About.tsx
+    │           Contact.tsx
+    │           InProgress.tsx
+    │           Projects.tsx
+    │           Skills.tsx
+    │           Title.tsx
+    │
+    └───lib
+            utils.ts
+README.md
+next.config.js
+tsconfig.json
+```
+
+---
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/moumnidev/Portfolio.git
+   cd Portfolio
+   ```
+2. Install dependencies  
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+3. Create a `.env.local` in the project root (see [Environment Variables](#environment-variables)).  
+4. Run the development server  
+   ```bash
+   npm run dev
+   ```
+5. Open http://localhost:3000 in your browser.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Environment Variables
+
+Create a `.env` file with the following:
+
+```env
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+EMAIL_TO=example@example.com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- SMTP_* – for sending emails via your SMTP provider
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Available Scripts
 
-## Learn More
+In the project directory, you can run:
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev` – start Next.js in development mode  
+- `npm run build` – build the app for production  
+- `npm run start` – start the production server  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+This project is optimized for Vercel. To deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push to GitHub.  
+2. Import the repository on Vercel.  
+3. Add the same environment variables in Vercel Dashboard.  
+4. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For more info, see [Next.js Deploy Documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+---
+
+## SEO & Accessibility
+
+- Structured data (JSON-LD) for Person  
+- `<meta>` tags and open graph in `layout.tsx`  
+- `sitemap.xml` & `robots.txt` in `/public`  
+- Semantic HTML and ARIA where needed  
+- Responsive and keyboard-accessible (focus outlines)  
+
+---
+
+## License
+
+This project is open source under the [MIT License](./LICENSE).
+
+---
+
+## Contact
+
+👤 MoumniDev  
+🌐 https://moumni.dev  
+✉️ contact@moumni.dev  
+📄 [LinkedIn](https://linkedin.com/in/moumnidev) | [GitHub](https://github.com/moumnidev)
