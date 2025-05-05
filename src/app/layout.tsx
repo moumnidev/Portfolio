@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     "TailwindCSS", "Node.js", "API", "Portfolio", "Web Development", "SEO"
   ],
   authors: [{ name: "MoumniDev", url: "https://moumni.dev" }],
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
   robots: { index: true, follow: true },
   alternates: {
     canonical: "https://moumni.dev/",
@@ -47,6 +46,12 @@ export const metadata: Metadata = {
     creator:     "@moumni_dev",
     images:      ["https://moumni.dev/twitter-card.png"]
   }
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover"
 }
 
 export default function RootLayout({

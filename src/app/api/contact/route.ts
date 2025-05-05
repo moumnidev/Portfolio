@@ -16,7 +16,7 @@ if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !EMAIL_TO) {
 }
 
 // Simple in‑memory rate limiter (5 requests per minute per IP)
-const RATE_LIMIT = 5
+const RATE_LIMIT = 10
 const WINDOW_MS = 60 * 1000
 const rateMap = new Map<string, { count: number; firstRequest: number }>()
 
@@ -55,12 +55,14 @@ export async function POST(request: NextRequest) {
         const { name, email, message } = await request.json()
 
         // Basic presence & length checks
-        if (
-            !name || typeof name !== "string" || name.length > 100 ||
-            !email || typeof email !== "string" || email.length > 100 ||
-            !message || typeof message !== "string" || message.length > 2000
-        ) {
-            return NextResponse.json({ error: "Invalid input" }, { status: 400 })
+        if (!name || typeof name !== "string" || name.length > 32) {
+            return NextResponse.json({ error: "Name is required and must be a string with a maximum length of 32 characters" }, { status: 400 })
+        }
+        if (!email || typeof email !== "string" || email.length > 100) {
+            return NextResponse.json({ error: "Email is required and must be a string with a maximum length of 100 characters" }, { status: 400 })
+        }
+        if (!message || typeof message !== "string" || message.length > 2048) {
+            return NextResponse.json({ error: "Message is required and must be a string with a maximum length of 2048 characters" }, { status: 400 })
         }
 
         // Prevent CRLF injection

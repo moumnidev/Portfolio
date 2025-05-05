@@ -6,7 +6,7 @@ const skills = [
   { label: "Design a Web Application", level: 90 },
   { label: "Develop Database-Driven Apps", level: 85 },
   { label: "Web Application Security", level: 70 },
-  { label: "JavaScript Frameworks (React)", level: 80 },
+  { label: "JavaScript Frameworks (React)", level: 100 },
   { label: "Responsive Design", level: 95 },
   { label: "Version Control (Git)", level: 90 },
   { label: "RESTful API Development", level: 85 },

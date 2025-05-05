@@ -28,15 +28,14 @@ const handleSubmit = async (e: FormEvent) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)
         })
-        if (!res.ok) throw new Error(`Error ${res.status}`)
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || `Error ${res.status}`)
+
         setStatus({ loading: false, success: true, error: null })
         setForm({ name: "", email: "", message: "" })
     } catch (err) {
-        if (err instanceof Error) {
-            setStatus({ loading: false, success: false, error: err.message })
-        } else {
-            setStatus({ loading: false, success: false, error: "Failed to send" })
-        }
+        const message = err instanceof Error ? err.message : "Failed to send"
+        setStatus({ loading: false, success: false, error: message })
     }
 }
 

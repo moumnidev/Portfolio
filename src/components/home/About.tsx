@@ -6,14 +6,14 @@ import Tilt from "react-parallax-tilt";
 import {
   FaReact, FaNodeJs, FaJava,
   FaHtml5, FaCss3Alt, FaDocker, FaPython,
-  FaInstagram, FaLinkedin
+  FaInstagram, FaLinkedin, FaGithub,
 } from "react-icons/fa";
 import {
   SiTypescript, SiMysql, SiMongodb, SiExpress, SiTailwindcss,
   SiRedux, SiAmazon, SiNpm, SiYarn, SiWebpack,
   SiBabel, SiJest, SiCypress, SiBootstrap,
   SiSass, SiPostman, SiGithub, SiGo, SiRust, SiKubernetes, SiTerraform,
-  SiJenkins, SiGitlab, SiIndeed, SiTelegram
+  SiJenkins, SiGitlab
 } from "react-icons/si";
 import { BiLogoVisualStudio } from "react-icons/bi";
 import { RiNextjsFill } from "react-icons/ri";
@@ -41,11 +41,10 @@ const socialItem = {
 };
 
 const socialLinks = [
-  { icon: FaInstagram,   url: "https://instagram.com/sofi_moumni",   label: "Instagram" },
+  { icon: FaInstagram,   url: "https://instagram.com/moumnidev",   label: "Instagram" },
   { icon: BsTwitterX,     url: "https://x.com/moumnidev",     label: "Twitter" },
-  { icon: FaLinkedin,    url: "https://linkedin.com/in/sofi_moumni", label: "LinkedIn" },
-  { icon: SiIndeed,      url: "https://indeed.com/profile/sofi_moumni", label: "Indeed" },
-  { icon: SiTelegram,    url: "https://t.me/sofi_moumni",           label: "Telegram" },
+  { icon: FaLinkedin,    url: "https://linkedin.com/in/moumnidev", label: "LinkedIn" },
+  { icon: FaGithub,    url: "https://github.com/moumnidev",           label: "GitHub" },
   { icon: HiOutlineMail, url: "mailto:contact@moumni.dev",          label: "Email" },
 ];
 
@@ -183,8 +182,6 @@ const About: React.FC = () => {
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-purple-500 opacity-20 blur-3xl rounded-full"></div>
-        <div className="absolute bottom-0 right-1/3 transform translate-x-1/2 w-[400px] h-[400px] bg-blue-500 opacity-15 blur-3xl rounded-full"></div>
-
         {/* Ajout de lumières supplémentaires */}
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-green-400 opacity-20 blur-3xl rounded-full"></div>
         <div className="absolute top-1/3 right-1/4 w-[250px] h-[250px] bg-pink-500 opacity-15 blur-3xl rounded-full"></div>

@@ -1,6 +1,22 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+
+const links = ["About", "Projects", "Skills", "Contact"];
+
+const menuVariants: Variants = {
+  closed: { x: "100%" },
+  open: { x: 0, transition: { stiffness: 20 } }
+};
+
+const itemVariants: Variants = {
+  closed: { opacity: 0, x: 20 },
+  open: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: 0.1 * i }
+  })
+};
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,8 +71,8 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
+              onClick={() => setIsOpen((o) => !o)}
+              className="text-gray-300 hover:text-white focus:outline-none z-30"
             >
               <svg
                 className="h-6 w-6"
@@ -66,14 +82,16 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
               >
                 {isOpen ? (
-                  <path
+                  <motion.path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M6 18L18 6M6 6l12 12"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 180 }}
                   />
                 ) : (
-                  <path
+                  <motion.path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
@@ -86,35 +104,36 @@ const Navbar: React.FC = () => {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Dropdown (hors du <nav>) */}
-      {isOpen && (
-        <motion.div
-          className="
-            fixed
-            top-[4rem]            /* juste sous la navbar */
-            inset-x-0 mx-auto
-            w-[90%] max-w-lg
-            md:hidden
-            bg-gray-800/70 backdrop-blur-md
-            shadow-lg rounded-lg
-            overflow-hidden
-            z-20
-          "
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          {["About", "Projects", "Skills", "Contact"].map((item) => (
-            <a
+      {/* Mobile Menu Overlay + Sidebar */}
+      <motion.div
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isOpen ? 1 : 0 }}
+        style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        onClick={() => setIsOpen(false)}
+      />
+
+      <motion.aside
+        className="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-gray-800 p-6 z-30 shadow-lg"
+        variants={menuVariants}
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+      >
+        <nav className="flex flex-col space-y-4 mt-8">
+          {links.map((item, i) => (
+            <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white transition duration-300"
+              className="text-gray-300 hover:text-white text-lg font-medium"
+              custom={i}
+              variants={itemVariants}
+              onClick={() => setIsOpen(false)}
             >
               {item}
-            </a>
+            </motion.a>
           ))}
-        </motion.div>
-      )}
+        </nav>
+      </motion.aside>
     </>
   );
 };
