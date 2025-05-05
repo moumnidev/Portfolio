@@ -100,7 +100,7 @@ tsconfig.json
    # or
    pnpm install
    ```
-3. Create a `.env.local` in the project root (see [Environment Variables](#environment-variables)).  
+3. Create a `.env` in the project root (see [Environment Variables](#environment-variables)).  
 4. Run the development server  
    ```bash
    npm run dev
